@@ -1,4 +1,4 @@
-package com.marco.second.second;
+package com.marco.second;
 
 import com.marco.second.MySecondVerticle;
 import io.vertx.core.DeploymentOptions;
