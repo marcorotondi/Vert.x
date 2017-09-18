@@ -1,4 +1,4 @@
-package com.marco.second;
+package com.marco.third;
 
 import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Vertx;
@@ -13,7 +13,7 @@ import org.junit.runner.RunWith;
 
 
 @RunWith(VertxUnitRunner.class)
-public class MySecondVerticleTest {
+public class MyThirdVerticleTest {
     private Vertx vertx;
 
     private int port = 9999;
@@ -23,7 +23,7 @@ public class MySecondVerticleTest {
         vertx = Vertx.vertx();
         DeploymentOptions options = new DeploymentOptions()
                 .setConfig(new JsonObject().put("http.port", port));
-        vertx.deployVerticle(MySecondVerticle.class.getName(), options, context.asyncAssertSuccess());
+        vertx.deployVerticle(MyThirdVerticle.class.getName(), options, context.asyncAssertSuccess());
     }
 
     @After
