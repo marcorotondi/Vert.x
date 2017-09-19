@@ -19,8 +19,6 @@ public class MyThirdVerticle extends AbstractVerticle {
 
     @Override
     public void start(Future<Void> fut) throws Exception {
-        PostBean postBean = new PostBean("Primo", "Secondo");
-        this.posts.put(postBean.getId(), postBean);
         final Router router = Router.router(vertx);
 
         // Bind "/" to our hello message - so we are still compatible.
