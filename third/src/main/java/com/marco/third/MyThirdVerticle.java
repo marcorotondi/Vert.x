@@ -3,6 +3,7 @@ package com.marco.third;
 import com.marco.third.model.PostBean;
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
+import io.vertx.core.http.HttpMethod;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.Json;
 import io.vertx.ext.web.Router;
@@ -18,6 +19,8 @@ public class MyThirdVerticle extends AbstractVerticle {
 
     @Override
     public void start(Future<Void> fut) throws Exception {
+        PostBean postBean = new PostBean("Primo", "Secondo");
+        this.posts.put(postBean.getId(), postBean);
         final Router router = Router.router(vertx);
 
         // Bind "/" to our hello message - so we are still compatible.
@@ -30,11 +33,11 @@ public class MyThirdVerticle extends AbstractVerticle {
 
         router.route("/asset/*").handler(StaticHandler.create("asset"));
 
-        router.route("/api/posts").handler(this::getAll);
+        router.get("/api/posts").handler(this::getAll);
 
         router.route("/api/posts*").handler(BodyHandler.create());
 
-        router.post("/api/posts").handler(this::addPost);
+        router.post( "/api/posts").handler(this::addPost);
 
         router.delete("/api/posts/:id").handler(this::deletePost);
 
