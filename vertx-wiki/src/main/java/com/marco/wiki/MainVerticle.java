@@ -5,6 +5,8 @@ import io.vertx.core.Future;
 import io.vertx.core.json.JsonObject;
 import io.vertx.rxjava.core.AbstractVerticle;
 import io.vertx.rxjava.ext.jdbc.JDBCClient;
+import io.vertx.rxjava.ext.web.Router;
+import io.vertx.rxjava.ext.web.handler.BodyHandler;
 import org.flywaydb.core.Flyway;
 import rx.Single;
 
@@ -39,8 +41,12 @@ public class MainVerticle extends AbstractVerticle {
     }
 
     private Single<Void> prepareWebServer() {
-       return vertx.createHttpServer()
-                //.requestHandler(router::accept)
+        final Router router = Router.router(vertx);
+
+        router.route().handler(BodyHandler.create());
+
+        return vertx.createHttpServer()
+                .requestHandler(router::accept)
                 .rxListen(8080)
                 .map(server -> null);
     }
