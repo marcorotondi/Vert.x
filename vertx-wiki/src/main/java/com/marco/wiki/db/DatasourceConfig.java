@@ -8,7 +8,7 @@ public class DatasourceConfig {
     private final String password;
 
     public DatasourceConfig(JsonObject datasourceConfig) {
-        url = datasourceConfig.getString("url", "jdbc:h2:file:../../../var/storage/h2/wikiDb;DB_CLOSE_ON_EXIT=FALSE");
+        url = datasourceConfig.getString("url", "jdbc:h2:file:/development/var/storage/h2/wikiDb;DB_CLOSE_ON_EXIT=FALSE");
         user = datasourceConfig.getString("user", "sa");
         password = datasourceConfig.getString("password", "");
     }
